@@ -55,7 +55,7 @@ long CExecute::Position(ENUM_TYPE_POSITION positionTypePar,double volumePar,doub
    //-- Check for negative numbers
    if(positionTypePar < 0 || volumePar < 0 || stopLossPar < 0 || takeProfitPar < 0 || sltpPar < 0 || deviationPar < 0){
       string msgTemp = "The Position WAS NOT completed. One of the parameters has negative value.";
-      this.Error.CreateErrorCustom(msgTemp,false,false,__FUNCTION__);
+      this.Error.CreateErrorCustom(msgTemp,false,true,__FUNCTION__);
       return ticketTemp;
    }
    //-- check symbol
@@ -86,7 +86,7 @@ long CExecute::Position(ENUM_TYPE_POSITION positionTypePar,double volumePar,doub
    MqlTradeResult result={0};               
    if(!OrderSend(request,result)){
       string msgTemp = "The Position WAS NOT completed.";
-      this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__),0,NULL,result.retcode);
+      this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__),0,NULL,result.retcode);
    }else {
       ticketTemp = (long)result.order; 
    }
@@ -104,7 +104,7 @@ long CExecute::Order(ENUM_TYPE_ORDER orderTypePar,double volumePar,double openPr
    //-- Check for negative numbers
    if(orderTypePar < 0 || volumePar < 0 || stopLossPar < 0 || takeProfitPar < 0 || sltpPar < 0 || deviationPar < 0 || expirationPar < 0){
       string msgTemp = "The Order WAS NOT completed. One of the parameters has negative value.";
-      this.Error.CreateErrorCustom(msgTemp,false,false,__FUNCTION__);
+      this.Error.CreateErrorCustom(msgTemp,false,true,__FUNCTION__);
       return ticketTemp;
    }
    //-- check symbol
@@ -135,7 +135,7 @@ long CExecute::Order(ENUM_TYPE_ORDER orderTypePar,double volumePar,double openPr
    MqlTradeResult result={0};               
    if(!OrderSend(request,result)){
       string msgTemp = "The Order WAS NOT completed.";
-      this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__),0,NULL,result.retcode);     
+      this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__),0,NULL,result.retcode);     
    }else {
       ticketTemp = (long)result.order; 
    }
@@ -155,7 +155,7 @@ void CExecute::PositionAsync(ENUM_TYPE_POSITION positionTypePar,double volumePar
    //-- Check for negative numbers
    if(positionTypePar < 0 || volumePar < 0 || stopLossPar < 0 || takeProfitPar < 0 || sltpPar < 0 || deviationPar < 0){
       string msgTemp = "The Position WAS NOT completed. One of the parameters has negative value.";
-      this.Error.CreateErrorCustom(msgTemp,false,false,__FUNCTION__);
+      this.Error.CreateErrorCustom(msgTemp,false,true,__FUNCTION__);
       return;
    }
    //-- check symbol
@@ -186,7 +186,7 @@ void CExecute::PositionAsync(ENUM_TYPE_POSITION positionTypePar,double volumePar
    MqlTradeResult result={0};               
    if(!OrderSendAsync(request,result)){
       string msgTemp = "The Position WAS NOT completed.";
-      this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__),0,NULL,result.retcode);
+      this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__),0,NULL,result.retcode);
    }
 }
 
@@ -201,7 +201,7 @@ void CExecute::OrderAsync(ENUM_TYPE_ORDER orderTypePar,double volumePar,double o
    //-- Check for negative numbers
    if(orderTypePar < 0 || volumePar < 0 || stopLossPar < 0 || takeProfitPar < 0 || sltpPar < 0 || deviationPar < 0 || expirationPar < 0){
       string msgTemp = "The Order WAS NOT completed. One of the parameters has negative value.";
-      this.Error.CreateErrorCustom(msgTemp,false,false,__FUNCTION__);
+      this.Error.CreateErrorCustom(msgTemp,false,true,__FUNCTION__);
       return;
    }
    //-- check symbol
@@ -232,7 +232,7 @@ void CExecute::OrderAsync(ENUM_TYPE_ORDER orderTypePar,double volumePar,double o
    MqlTradeResult result={0};               
    if(!OrderSendAsync(request,result)){
       string msgTemp = "The Order WAS NOT completed.";
-      this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__),0,NULL,result.retcode);     
+      this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__),0,NULL,result.retcode);     
    }
 }
 

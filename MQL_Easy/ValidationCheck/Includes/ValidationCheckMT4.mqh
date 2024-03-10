@@ -58,7 +58,7 @@ bool CValidationCheck::CheckMoneyForTrade(string symbolPar,double volumePar,ENUM
       string msgTemp = "Your account size has NOT enough money for "+(string)oper_temp+" at "+symbolPar+
                        " with volume  = "+(string)volumePar+"\n";
          msgTemp += "Either reduce the volume or increase your account size.";         
-         return this.Error.CreateErrorCustom(msgTemp,false,false,(__FUNCTION__));
+         return this.Error.CreateErrorCustom(msgTemp,false,true,(__FUNCTION__));
      }
 //--- checking successful
    return(true);
@@ -283,7 +283,7 @@ bool CValidationCheck::CheckModifyLevels(long ticketPar, double pricePar, double
       }      
    }else{
       string msgTemp = "The order #"+(string)+ticketPar+" was NOT selected";
-      return this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
+      return this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
    }
 //--- came to the end, no changes for the order
    return(false);       // no point in modifying 
@@ -308,7 +308,7 @@ bool CValidationCheck::CheckMaxNumberPendingOrders()
          if(OrderType() != OP_BUY && OrderType() != OP_SELL)pendingOrders++;
       }else{
          string msgTemp = "The order was NOT selected";
-         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
+         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
       }
    }
    //-- check if the limit is exceeded

@@ -52,7 +52,7 @@ long CExecute::Position(ENUM_TYPE_POSITION positionTypePar,double volumePar,doub
    //-- Check for negative numbers
    if(positionTypePar < 0 || volumePar < 0 || stopLossPar < 0 || takeProfitPar < 0 || sltpPar < 0 || deviationPar < 0){
       string msgTemp = "The Position WAS NOT completed. One of the parameters has negative value.";
-      this.Error.CreateErrorCustom(msgTemp,false,false,__FUNCTION__);
+      this.Error.CreateErrorCustom(msgTemp,false,true,__FUNCTION__);
       return ticketTemp;
    }
    //-- check symbol
@@ -71,7 +71,7 @@ long CExecute::Position(ENUM_TYPE_POSITION positionTypePar,double volumePar,doub
    ticketTemp = OrderSend(this.Symbol,(ENUM_ORDER_TYPE)positionTypePar,volumePar,priceTemp,deviationPar/10,stoplossTemp,takeprofitTemp,commentPar,(int)this.MagicNumber,0,colorTemp);	
    if(ticketTemp == -1){
       string msgTemp = "The Position WAS NOT completed.";
-      this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__)); 
+      this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__)); 
    }  
    return ticketTemp;
 }
@@ -87,7 +87,7 @@ long CExecute::Order(ENUM_TYPE_ORDER orderTypePar,double volumePar,double openPr
    //-- Check for negative numbers
    if(orderTypePar < 0 || volumePar < 0 || stopLossPar < 0 || takeProfitPar < 0 || sltpPar < 0 || deviationPar < 0 || expirationPar < 0){
       string msgTemp = "The Position WAS NOT completed. One of the parameters has negative value.";
-      this.Error.CreateErrorCustom(msgTemp,false,false,__FUNCTION__);
+      this.Error.CreateErrorCustom(msgTemp,false,true,__FUNCTION__);
       return ticketTemp;
    }
    //-- Price
@@ -103,7 +103,7 @@ long CExecute::Order(ENUM_TYPE_ORDER orderTypePar,double volumePar,double openPr
    ticketTemp = OrderSend(this.Symbol,(ENUM_ORDER_TYPE)orderTypePar,volumePar,priceTemp,deviationPar/10,stoplossTemp,takeprofitTemp,commentPar,(int)this.MagicNumber,expirationPar,clrLime);	
    if(ticketTemp == -1){
       string msgTemp = "The Order WAS NOT completed.";
-      this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__)); 
+      this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__)); 
    }  
    return ticketTemp;
 }

@@ -100,7 +100,7 @@ bool CExecuteBase::Validation(ENUM_SLTP_TYPE sltpPar,ENUM_ORDER_TYPE typePar,dou
       //-- expiration paratemer check
       if(expirationPar != 0 && expirationPar <= TimeCurrent()){
          string msgTemp = "The expiration parameter must be greater than "+(string)TimeCurrent();
-         this.Error.CreateErrorCustom(msgTemp,false,false,__FUNCTION__);
+         this.Error.CreateErrorCustom(msgTemp,false,true,__FUNCTION__);
          return false;
       }
       //-- Validations

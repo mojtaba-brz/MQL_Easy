@@ -92,7 +92,7 @@ bool CHistoryOrder::HistoryRange(void)
 {
    if(!HistorySelect(this.StartDate,(this.EndDate == 0) ? TimeCurrent() : this.EndDate)){
       string msgTemp = "HistorySelect function produced an Error";
-      this.Error.CreateErrorCustom(msgTemp,true,false,__FUNCTION__);
+      this.Error.CreateErrorCustom(msgTemp,true,true,__FUNCTION__);
       return false;
    }  
    return true;
@@ -126,7 +126,7 @@ long CHistoryOrder::SelectByIndex(int indexPar)
          }
 		}else{
          string msgTemp = "The History Order with index "+(string)i+" WAS NOT Selected.";
-         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
+         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
          this.ValidSelection           = false;
       }
 	}
@@ -135,7 +135,7 @@ long CHistoryOrder::SelectByIndex(int indexPar)
 	if(indexPar >= numberOrders){
 	   string msgTemp    = "The index of selection can NOT be greater or equal than the total history orders. \n";
 	          msgTemp   += "indexPar = "+(string)indexPar+" -- "+"Total Orders = "+(string)numberOrders;
-      this.Error.CreateErrorCustom(msgTemp,false,false,(__FUNCTION__));
+      this.Error.CreateErrorCustom(msgTemp,false,true,(__FUNCTION__));
       this.ValidSelection = false;
 	}
    return -1;
@@ -157,7 +157,7 @@ bool CHistoryOrder::SelectByTicket(long ticketPar)
    else{
       this.ValidSelection           = false;
       string msgTemp = "The History Order WAS NOT Selected.";
-      return this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
+      return this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
    }
 }
 
@@ -181,7 +181,7 @@ int CHistoryOrder::GroupTotal()
                totalOrders++;  		   
 		}else{
          string msgTemp = "The History Order WAS NOT Selected.";
-         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
+         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
       }
 	}
    return totalOrders; 
@@ -206,7 +206,7 @@ double CHistoryOrder::GroupTotalVolume(void)
                volumeOrders += HistoryOrderGetDouble(ticketTemp,ORDER_VOLUME_INITIAL);  		   
 		}else{
          string msgTemp = "The History Order WAS NOT Selected.";
-         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
+         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
       }
 	}
    return volumeOrders;   

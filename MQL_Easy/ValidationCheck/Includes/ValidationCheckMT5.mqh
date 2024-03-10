@@ -61,7 +61,7 @@ bool CValidationCheck::CheckMoneyForTrade(string symbolPar,double volumePar,ENUM
      {
       //--- something went wrong, report and return false
       string msgTemp = "Error in OrderCalcMargin function !";
-      return this.Error.CreateErrorCustom(msgTemp,false,false,(__FUNCTION__));
+      return this.Error.CreateErrorCustom(msgTemp,false,true,(__FUNCTION__));
      }
    //--- if there are insufficient funds to perform the operation
    if(marginTemp>freeMarginTemp)
@@ -71,7 +71,7 @@ bool CValidationCheck::CheckMoneyForTrade(string symbolPar,double volumePar,ENUM
       string msgTemp = "Your account size has NOT enough money for "+(string)oper+" at "+symbolPar+" with volume "+(string)volumePar
                      +". Your account free margin is "+(string)freeMarginTemp+" and you need "+(string)marginTemp+"\n";
       msgTemp       += "Either reduce the volume or increase your account size.";
-      return this.Error.CreateErrorCustom(msgTemp,false,false,(__FUNCTION__));
+      return this.Error.CreateErrorCustom(msgTemp,false,true,(__FUNCTION__));
      }
    return(true);
   }
@@ -301,7 +301,7 @@ bool CValidationCheck::CheckModifyLevels(long ticketPar,double pricePar,double s
       }      
    }else{
       string msgTemp = "The order #"+(string)+ticketPar+" was NOT selected";
-      return this.Error.CreateErrorCustom(msgTemp,false,false,(__FUNCTION__));
+      return this.Error.CreateErrorCustom(msgTemp,false,true,(__FUNCTION__));
    }
 //--- came to the end, no changes for the order
    return(false);       // no point in modifying 
@@ -357,7 +357,7 @@ bool CValidationCheck::CheckMaxVolume(string symbolPar, ulong typePar, double vo
          }
       }else{
          string msgTemp = "The position was NOT selected";
-         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
+         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
       }
    }
    //-- Orders
@@ -376,7 +376,7 @@ bool CValidationCheck::CheckMaxVolume(string symbolPar, ulong typePar, double vo
          }
       }else{
          string msgTemp = "The order was NOT selected";
-         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));   
+         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));   
       }
    }
    //-- Validation

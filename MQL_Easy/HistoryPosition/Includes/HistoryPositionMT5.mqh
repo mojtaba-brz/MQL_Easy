@@ -100,7 +100,7 @@ bool CHistoryPosition::HistoryRange(void)
 {
    if(!HistorySelect(this.StartDate,(this.EndDate == 0) ? TimeCurrent() : this.EndDate)){
       string msgTemp = "HistorySelect function produced an Error";
-      this.Error.CreateErrorCustom(msgTemp,true,false,__FUNCTION__);
+      this.Error.CreateErrorCustom(msgTemp,true,true,__FUNCTION__);
       return false;
    }  
    return true;
@@ -135,7 +135,7 @@ long CHistoryPosition::SelectByIndex(int indexPar)
          }
 		}else{
          string msgTemp = "The History Position with index "+(string)i+" WAS NOT Selected.";
-         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
+         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
          this.ValidSelection           = false;
       }
 	}
@@ -144,7 +144,7 @@ long CHistoryPosition::SelectByIndex(int indexPar)
 	if(indexPar >= numberPositions){
 	   string msgTemp    = "The index of selection can NOT be equal or greater than the total history deals. \n";
 	          msgTemp   += "indexPar = "+(string)indexPar+" -- "+"Total Deals = "+(string)numberPositions;
-      this.Error.CreateErrorCustom(msgTemp,false,false,(__FUNCTION__));
+      this.Error.CreateErrorCustom(msgTemp,false,true,(__FUNCTION__));
       this.ValidSelection = false;
 	}
    return -1;
@@ -166,7 +166,7 @@ bool CHistoryPosition::SelectByTicket(long ticketPar)
    else{
       string msgTemp       = "The History Position WAS NOT Selected.";
       this.ValidSelection  = false;
-      return this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
+      return this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
    }
 }
 
@@ -192,7 +192,7 @@ int CHistoryPosition::GroupTotal()
                totalPositions++;  		   
 		}else{
          string msgTemp = "The History Position WAS NOT Selected.";
-         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
+         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
       }
 	}
    return totalPositions; 
@@ -218,7 +218,7 @@ double CHistoryPosition::GroupTotalVolume(void)
                volumePositions += HistoryDealGetDouble(ticketTemp,DEAL_VOLUME);  		   
 		}else{
          string msgTemp = "The History Position WAS NOT Selected.";
-         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
+         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
       }
 	}
    return volumePositions;   
@@ -244,7 +244,7 @@ double CHistoryPosition::GroupTotalProfit(void)
                   + HistoryDealGetDouble(ticketTemp,DEAL_COMMISSION);  		   
 		}else{
          string msgTemp = "The History Position WAS NOT Selected.";
-         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
+         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
       }
 	}
 	return positionsProfit;

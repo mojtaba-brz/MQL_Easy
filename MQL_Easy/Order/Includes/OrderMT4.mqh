@@ -100,7 +100,7 @@ long COrder::SelectByIndex(int indexPar)
          }
 		}else{
          string msgTemp = "The Order with index "+(string)i+" WAS NOT Selected.";
-         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
+         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
          this.ValidSelection = false;
       }
 	}
@@ -128,7 +128,7 @@ bool COrder::SelectByTicket(long ticketPar)
    else{
       this.ValidSelection  = false;
       string msgTemp       = "The Order WAS NOT Selected.";
-      return this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
+      return this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
    }
 }
 
@@ -145,7 +145,7 @@ int COrder::GroupTotal()
             totalOrders++;  		   
 		}else{
          string msgTemp = "The Order WAS NOT Selected.";
-         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
+         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
       }
 	}
    return totalOrders; 
@@ -165,7 +165,7 @@ double COrder::GroupTotalVolume(void)
             volumeOrders += OrderLots();
 		}else{
          string msgTemp = "The Order WAS NOT Selected.";
-         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
+         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
       }
 	}
    return volumeOrders;   
@@ -191,7 +191,7 @@ void COrder::GroupCloseAll(uint triesPar = 20)
 		   bool resultTemp = OrderDelete(OrderTicket());
 		   if (resultTemp != true){//if it did not close
 		      string msgTemp = "The Order WAS NOT Closed.";
-            this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
+            this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
             Sleep(1000);
             triesTemp++;
             if(triesTemp >= triesPar)continue;
@@ -199,7 +199,7 @@ void COrder::GroupCloseAll(uint triesPar = 20)
 		   }			   
 		}else{
 		   string msgTemp = "The Order WAS NOT Selected.";
-         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
+         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
       }
 	}
 }
@@ -329,7 +329,7 @@ bool COrder::Close(uint triesPar = 20)
 	   bool resultTemp = OrderDelete((int)this.GetTicket());
 	   if (resultTemp != true){//if it did not close
 	      string msgTemp = "The Order WAS NOT Closed.";
-         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
+         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
          Sleep(1000);
          //-- Extra Layer Of Safety
          if(!OrderSelect((int)this.GetTicket(),SELECT_BY_TICKET,MODE_TRADES)){
@@ -367,7 +367,7 @@ bool COrder::Modify(double priceOpenPar = WRONG_VALUE,double stopLossPar = WRONG
    else if(expirationPar <= TimeCurrent()){
       Print("The expiration parameter must be greater than "+(string)TimeCurrent()+" , Function("+__FUNCTION__+")");
       string msgTemp = "The expiration parameter must be greater than "+(string)TimeCurrent();
-      return this.Error.CreateErrorCustom(msgTemp,true,true);
+      return this.Error.CreateErrorCustom(msgTemp,true,false);
    }  
    CValidationCheck validationCheckTemp;
    //-- Price Open Validation
@@ -390,7 +390,7 @@ bool COrder::Modify(double priceOpenPar = WRONG_VALUE,double stopLossPar = WRONG
    //-- Modify              
    if(!OrderModify((int)this.GetTicket(),priceOpenTemp,stopLossTemp,takeProfitTemp,0,clrBlue)){
       string msgTemp = "The Order WAS NOT Modified.";
-      this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
+      this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
       return false;        
    }    
    return true;

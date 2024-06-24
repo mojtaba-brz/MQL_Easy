@@ -71,7 +71,7 @@ long CExecute::Position(ENUM_TYPE_POSITION positionTypePar,double volumePar,doub
    ticketTemp = OrderSend(this.Symbol,(ENUM_ORDER_TYPE)positionTypePar,volumePar,priceTemp,deviationPar/10,stoplossTemp,takeprofitTemp,commentPar,(int)this.MagicNumber,0,colorTemp);	
    if(ticketTemp == -1){
       string msgTemp = "The Position WAS NOT completed.";
-      this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__)); 
+      this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__)); 
    }  
    return ticketTemp;
 }
@@ -103,7 +103,7 @@ long CExecute::Order(ENUM_TYPE_ORDER orderTypePar,double volumePar,double openPr
    ticketTemp = OrderSend(this.Symbol,(ENUM_ORDER_TYPE)orderTypePar,volumePar,priceTemp,deviationPar/10,stoplossTemp,takeprofitTemp,commentPar,(int)this.MagicNumber,expirationPar,clrLime);	
    if(ticketTemp == -1){
       string msgTemp = "The Order WAS NOT completed.";
-      this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__)); 
+      this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__)); 
    }  
    return ticketTemp;
 }

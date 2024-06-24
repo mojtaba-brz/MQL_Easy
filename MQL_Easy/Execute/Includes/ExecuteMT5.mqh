@@ -86,7 +86,7 @@ long CExecute::Position(ENUM_TYPE_POSITION positionTypePar,double volumePar,doub
    MqlTradeResult result={0};               
    if(!OrderSend(request,result)){
       string msgTemp = "The Position WAS NOT completed.";
-      this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__),0,NULL,result.retcode);
+      this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__),0,NULL,result.retcode);
    }else {
       ticketTemp = (long)result.order; 
    }
@@ -135,7 +135,7 @@ long CExecute::Order(ENUM_TYPE_ORDER orderTypePar,double volumePar,double openPr
    MqlTradeResult result={0};               
    if(!OrderSend(request,result)){
       string msgTemp = "The Order WAS NOT completed.";
-      this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__),0,NULL,result.retcode);     
+      this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__),0,NULL,result.retcode);     
    }else {
       ticketTemp = (long)result.order; 
    }
@@ -186,7 +186,7 @@ void CExecute::PositionAsync(ENUM_TYPE_POSITION positionTypePar,double volumePar
    MqlTradeResult result={0};               
    if(!OrderSendAsync(request,result)){
       string msgTemp = "The Position WAS NOT completed.";
-      this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__),0,NULL,result.retcode);
+      this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__),0,NULL,result.retcode);
    }
 }
 
@@ -232,7 +232,7 @@ void CExecute::OrderAsync(ENUM_TYPE_ORDER orderTypePar,double volumePar,double o
    MqlTradeResult result={0};               
    if(!OrderSendAsync(request,result)){
       string msgTemp = "The Order WAS NOT completed.";
-      this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__),0,NULL,result.retcode);     
+      this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__),0,NULL,result.retcode);     
    }
 }
 

@@ -121,7 +121,7 @@ long CPosition::SelectByIndex(int indexPar)
       else
         {
          string msgTemp = "The Position with index "+(string)i+" WAS NOT selected.";
-         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
+         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
          this.ValidSelection = false;
         }
      }
@@ -151,7 +151,7 @@ bool CPosition::SelectByTicket(long ticketPar)
    else
      {
       string msgTemp = "The Position WAS NOT Selected.";
-      return this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
+      return this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
       this.ValidSelection = false;
      }
   }
@@ -173,7 +173,7 @@ int CPosition::GroupTotal()
       else
         {
          string msgTemp = "The Position WAS NOT Selected.";
-         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
+         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
         }
      }
    return totalPositions;
@@ -197,7 +197,7 @@ double CPosition::GroupTotalVolume(void)
       else
         {
          string msgTemp = "The Position WAS NOT Selected.";
-         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
+         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
         }
      }
    return volumePositions;
@@ -220,7 +220,7 @@ double CPosition::GroupTotalProfit(void)
       else
         {
          string msgTemp = "The Position WAS NOT Selected.";
-         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
+         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
         }
      }
    return profitTemp;
@@ -248,7 +248,7 @@ double CPosition::GroupAverageOpenPrice()
       else
         {
          string msgTemp = "The Position WAS NOT Selected.";
-         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
+         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
         }
      }
    CUtilities utilsTemp;
@@ -286,7 +286,7 @@ double CPosition::GroupAveragePositionPrice()
       else
         {
          string msgTemp = "The Position WAS NOT Selected.";
-         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
+         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
         }
      }
    CUtilities utilsTemp;
@@ -322,7 +322,7 @@ double CPosition::GroupAverageVolume()
       else
         {
          string msgTemp = "The Position WAS NOT Selected.";
-         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
+         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
         }
      }
    CUtilities utilsTemp;
@@ -358,7 +358,7 @@ double CPosition::GroupTotalNetVolume()
       else
         {
          string msgTemp = "The Position WAS NOT Selected.";
-         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
+         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
         }
      }
    return netVolumesTemp;
@@ -387,7 +387,7 @@ void CPosition::GroupCloseAll(uint triesPar = 20)
          if(resultTemp != true)
            {
             string msgTemp = "The Position WAS NOT Closed.";
-            this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
+            this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
             Sleep(1000);
             triesTemp++;
             if(triesTemp >= triesPar)
@@ -398,7 +398,7 @@ void CPosition::GroupCloseAll(uint triesPar = 20)
       else
         {
          string msgTemp = "The Position WAS NOT Selected.";
-         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
+         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
         }
      }
   }
@@ -569,7 +569,7 @@ bool CPosition::Close(uint triesPar = 20)
       if(result != true) //if it did not close
         {
          string msgTemp = "The Position WAS NOT Closed.";
-         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
+         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
          Sleep(1000);
          //-- Extra Layer Of Safety
          if(!OrderSelect((int)this.GetTicket(),SELECT_BY_TICKET,MODE_TRADES))
@@ -615,7 +615,7 @@ bool CPosition::ClosePartial(double volumePar,uint triesPar = 20)
       if(result != true) //if it did not close
         {
          string msgTemp = "The Position WAS NOT Closed.";
-         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
+         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
          Sleep(1000);
          //-- Extra Layer Of Safety
          if(!OrderSelect((int)this.GetTicket(),SELECT_BY_TICKET,MODE_TRADES))
@@ -671,7 +671,7 @@ bool CPosition::Modify(double stopLossPar = WRONG_VALUE,double takeProfitPar = W
    if(!OrderModify((int)this.GetTicket(),priceOpenTemp,stopLossTemp,takeProfitTemp,0,clrBlue))
      {
       string msgTemp = "The Position WAS NOT Modified.";
-      this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
+      this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
       return false;
      }
    return true;

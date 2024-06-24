@@ -283,7 +283,7 @@ bool CValidationCheck::CheckModifyLevels(long ticketPar, double pricePar, double
       }      
    }else{
       string msgTemp = "The order #"+(string)+ticketPar+" was NOT selected";
-      return this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
+      return this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
    }
 //--- came to the end, no changes for the order
    return(false);       // no point in modifying 
@@ -308,7 +308,7 @@ bool CValidationCheck::CheckMaxNumberPendingOrders()
          if(OrderType() != OP_BUY && OrderType() != OP_SELL)pendingOrders++;
       }else{
          string msgTemp = "The order was NOT selected";
-         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
+         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
       }
    }
    //-- check if the limit is exceeded

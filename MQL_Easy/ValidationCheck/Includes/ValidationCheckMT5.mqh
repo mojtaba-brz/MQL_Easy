@@ -201,6 +201,7 @@ bool CValidationCheck::CheckStopLossTakeprofit(string symbolPar,ENUM_ORDER_TYPE 
 bool CValidationCheck::CheckPendingFreezeLevel(string symbolPar, int typePar, double openPricePar)
   {
    //--
+   ResetLastError();
    int freezeLevel = (int)SymbolInfoInteger(symbolPar,SYMBOL_TRADE_FREEZE_LEVEL); 
    int stops_level = (int)SymbolInfoInteger(symbolPar,SYMBOL_TRADE_STOPS_LEVEL);
    freezeLevel     = MathMax(freezeLevel,stops_level);
@@ -357,7 +358,7 @@ bool CValidationCheck::CheckMaxVolume(string symbolPar, ulong typePar, double vo
          }
       }else{
          string msgTemp = "The position was NOT selected";
-         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
+         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
       }
    }
    //-- Orders
@@ -376,7 +377,7 @@ bool CValidationCheck::CheckMaxVolume(string symbolPar, ulong typePar, double vo
          }
       }else{
          string msgTemp = "The order was NOT selected";
-         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));   
+         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));   
       }
    }
    //-- Validation

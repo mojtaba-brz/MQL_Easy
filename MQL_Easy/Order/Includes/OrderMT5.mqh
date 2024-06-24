@@ -101,7 +101,7 @@ long COrder::SelectByIndex(int indexPar)
          }
 		}else{
          string msgTemp = "The Order with index "+(string)i+" WAS NOT Selected.";
-         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
+         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
          this.ValidSelection = false;
       }
 	}
@@ -110,7 +110,7 @@ long COrder::SelectByIndex(int indexPar)
 	if(indexPar >= numberOrders){
 	   string msgTemp    = "The index of selection can NOT be equal or greater than the total orders. \n";
 	          msgTemp   += "indexPar = "+(string)indexPar+" -- "+"Total Orders = "+(string)numberOrders;
-      this.Error.CreateErrorCustom(msgTemp,false,true,(__FUNCTION__));
+      this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
       this.ValidSelection = false;
 	}
    return -1;
@@ -128,7 +128,7 @@ bool COrder::SelectByTicket(long ticketPar)
    }else{
       this.ValidSelection = false;
       string msgTemp = "The Order WAS NOT Selected.";
-      return this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
+      return this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
    }
 }
 
@@ -146,7 +146,7 @@ int COrder::GroupTotal()
             totalOrders++;  		   
 		}else{
          string msgTemp = "The Order WAS NOT Selected.";
-         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
+         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
       }
 	}
    return totalOrders; 
@@ -166,7 +166,7 @@ double COrder::GroupTotalVolume(void)
             volumeOrders += OrderGetDouble(ORDER_VOLUME_CURRENT);  		   
 		}else{
          string msgTemp = "The Order WAS NOT Selected.";
-         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
+         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
       }
 	}
    return volumeOrders;   
@@ -198,15 +198,15 @@ void COrder::GroupCloseAll(uint triesPar = 20)
          request.type_filling          = utilsTemp.FillingOrder(); 
 		   if(!OrderSend(request,result)){
 				string msgTemp = "The Order WAS NOT Closed.";
-            this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__),0,NULL,result.retcode);
-            Sleep(1000);
+            this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__),0,NULL,result.retcode);
+            Sleep(100);
             triesTemp++;
             if(triesTemp >= triesPar)continue;
             i++;
 			} 			
 		}else{
 		   string msgTemp = "The Order WAS NOT Selected.";
-         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__));
+         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__));
       }
 	}
 }
@@ -342,8 +342,8 @@ bool COrder::Close(uint triesPar = 20)
       request.type_filling    = utilsTemp.FillingOrder(); 
 	   if(!OrderSend(request,result)){
          string msgTemp = "The Order WAS NOT Closed.";
-         this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__),0,NULL,result.retcode);
-         Sleep(1000);
+         this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__),0,NULL,result.retcode);
+         Sleep(100);
 		}else {
 		   status = true;
 		   break;	
@@ -374,7 +374,7 @@ bool COrder::Modify(double priceOpenPar = WRONG_VALUE,double stopLossPar = WRONG
    else if(expirationPar <= TimeCurrent()){
       Print("The expiration parameter must be greater than "+(string)TimeCurrent()+" , Function("+__FUNCTION__+")");
       string msgTemp = "The expiration parameter must be greater than "+(string)TimeCurrent();
-      return this.Error.CreateErrorCustom(msgTemp,true,true);
+      return this.Error.CreateErrorCustom(msgTemp,true,false);
    }  
    CValidationCheck validationCheckTemp;
    //-- Price Open Validation
@@ -411,7 +411,7 @@ bool COrder::Modify(double priceOpenPar = WRONG_VALUE,double stopLossPar = WRONG
    MqlTradeResult result      = {0};    
    if(!OrderSend(request,result)){
       string msgTemp = "The Order WAS NOT Modified.";
-      this.Error.CreateErrorCustom(msgTemp,true,true,(__FUNCTION__),0,NULL,result.retcode);
+      this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__),0,NULL,result.retcode);
       return false;        
    }    
    return true;

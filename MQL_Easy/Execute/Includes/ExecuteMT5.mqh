@@ -132,11 +132,15 @@ long CExecute::Order(ENUM_TYPE_ORDER orderTypePar,double volumePar,double openPr
    //-- Filling Order Problem
    request.type_filling    = utilsTemp.FillingOrder();
    //--- send a trade request 
-   MqlTradeResult result={0};               
-   if(!OrderSend(request,result)){
+   MqlTradeResult result={0};  
+   int retries = 0;             
+   while(!OrderSend(request,result) && retries < 20){
       string msgTemp = "The Order WAS NOT completed.";
-      this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__),0,NULL,result.retcode);     
-   }else {
+      this.Error.CreateErrorCustom(msgTemp,true,false,(__FUNCTION__),0,NULL,result.retcode);  
+      retries++;
+      Sleep(50);   
+   }
+   if(retries < 20) {
       ticketTemp = (long)result.order; 
    }
    return ticketTemp;

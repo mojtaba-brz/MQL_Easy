@@ -364,9 +364,9 @@ bool COrder::Modify(double priceOpenPar = WRONG_VALUE,double stopLossPar = WRONG
    int   typeTemp          = (int)this.GetType(); 
    //-- Check Expiration Parameter
    if(expirationPar == WRONG_VALUE)expirationTemp = (datetime)this.GetTimeExpiration();
-   else if(expirationPar <= TimeCurrent()){
-      Print("The expiration parameter must be greater than "+(string)TimeCurrent()+" , Function("+__FUNCTION__+")");
-      string msgTemp = "The expiration parameter must be greater than "+(string)TimeCurrent();
+   else if(expirationPar <= TimeTradeServer()){
+      Print("The expiration parameter must be greater than "+(string)TimeTradeServer()+" , Function("+__FUNCTION__+")");
+      string msgTemp = "The expiration parameter must be greater than "+(string)TimeTradeServer();
       return this.Error.CreateErrorCustom(msgTemp,true,false);
    }  
    CValidationCheck validationCheckTemp;

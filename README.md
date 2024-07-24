@@ -206,7 +206,7 @@ The CHistoryPosition and CHistoryOrder are responsible for collecting informatio
 Example: 
 ```
 CHistoryPosition historyPosition;
-historyPosition.SetHistoryRange(D'2019.03.25 00:00:00',TimeCurrent());
+historyPosition.SetHistoryRange(D'2019.03.25 00:00:00',TimeTradeServer());
 for(int i =0; i < historyPosition.GroupTotal(); i++){
    Print("#ticket: "+historyPosition[i].GetTicket()+" time close :
    "+historyPosition[i].GetTimeClose());

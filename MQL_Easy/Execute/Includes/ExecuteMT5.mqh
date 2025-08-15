@@ -48,7 +48,7 @@ CExecute::~CExecute()
 //+------------------------------------------------------------------+
 //|     create a position
 //+------------------------------------------------------------------+
-long CExecute::Position(ENUM_TYPE_POSITION positionTypePar,double volumePar,double stopLossPar=0.000000,double takeProfitPar=0.000000,ENUM_SLTP_TYPE sltpPar=0,int deviationPar=10,string commentPar=NULL)
+long CExecute::Position(ENUM_TYPE_POSITION positionTypePar,double volumePar,double stopLossPar=0,double takeProfitPar=0,ENUM_SLTP_TYPE sltpPar=0,int deviationPar=10,string commentPar=NULL)
 {
    //-- Ticket
    long ticketTemp = -1;
@@ -97,7 +97,7 @@ long CExecute::Position(ENUM_TYPE_POSITION positionTypePar,double volumePar,doub
 //+------------------------------------------------------------------+
 //|     create an order
 //+------------------------------------------------------------------+
-long CExecute::Order(ENUM_TYPE_ORDER orderTypePar,double volumePar,double openPricePar,double stopLossPar=0.000000,double takeProfitPar=0.000000,ENUM_SLTP_TYPE sltpPar=0,datetime expirationPar=0,int deviationPar=10,string commentPar=NULL)
+long CExecute::Order(ENUM_TYPE_ORDER orderTypePar,double volumePar,double openPricePar,double stopLossPar=0,double takeProfitPar=0,ENUM_SLTP_TYPE sltpPar=0,datetime expirationPar=0,int deviationPar=10,string commentPar=NULL)
 {
    //-- Ticket
    long ticketTemp = -1;
@@ -152,7 +152,7 @@ long CExecute::Order(ENUM_TYPE_ORDER orderTypePar,double volumePar,double openPr
 //+------------------------------------------------------------------+
 //|     create a position async
 //+------------------------------------------------------------------+
-void CExecute::PositionAsync(ENUM_TYPE_POSITION positionTypePar,double volumePar,double stopLossPar=0.000000,double takeProfitPar=0.000000,ENUM_SLTP_TYPE sltpPar=0,int deviationPar=10,string commentPar=NULL)
+void CExecute::PositionAsync(ENUM_TYPE_POSITION positionTypePar,double volumePar,double stopLossPar=0,double takeProfitPar=0,ENUM_SLTP_TYPE sltpPar=0,int deviationPar=10,string commentPar=NULL)
 {
    //-- Ticket
    long ticketTemp = -1;
@@ -198,7 +198,7 @@ void CExecute::PositionAsync(ENUM_TYPE_POSITION positionTypePar,double volumePar
 //+------------------------------------------------------------------+
 //|     create an order async
 //+------------------------------------------------------------------+
-void CExecute::OrderAsync(ENUM_TYPE_ORDER orderTypePar,double volumePar,double openPricePar,double stopLossPar=0.000000,double takeProfitPar=0.000000,ENUM_SLTP_TYPE sltpPar=0,datetime expirationPar=0,int deviationPar=10,string commentPar=NULL)
+void CExecute::OrderAsync(ENUM_TYPE_ORDER orderTypePar,double volumePar,double openPricePar,double stopLossPar=0,double takeProfitPar=0,ENUM_SLTP_TYPE sltpPar=0,datetime expirationPar=0,int deviationPar=10,string commentPar=NULL)
 {
    //-- Ticket
    long ticketTemp = -1;

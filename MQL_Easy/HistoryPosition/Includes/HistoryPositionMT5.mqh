@@ -98,7 +98,7 @@ CHistoryPosition* CHistoryPosition::operator[](const long ticketPar)
 //+------------------------------------------------------------------+
 bool CHistoryPosition::HistoryRange(void)
 {
-   if(!HistorySelect(this.StartDate,(this.EndDate == 0) ? TimeTradeServer() : this.EndDate)){
+   if(!HistorySelect(this.StartDate,(this.EndDate == 0) ? TimeCurrent() : this.EndDate)){
       string msgTemp = "HistorySelect function produced an Error";
       this.Error.CreateErrorCustom(msgTemp,true,true,__FUNCTION__);
       return false;

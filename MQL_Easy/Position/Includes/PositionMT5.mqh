@@ -573,7 +573,7 @@ double CPosition::GetCommission(void)
   {
    if(!this.ValidSelection)
       return -1;
-   return PositionGetDouble(POSITION_COMMISSION);
+   return 0; // PositionGetDouble(POSITION_COMMISSION); Depricated!
   }
 
 

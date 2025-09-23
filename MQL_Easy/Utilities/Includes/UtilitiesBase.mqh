@@ -200,7 +200,7 @@ double CUtilitiesBase::Pip(void)
    if(this.Error.CheckLastError(true,__FUNCTION__))return WRONG_VALUE;
    //--
    double point   = this.Point();
-   if(digits == 5 || digits == 3)return point*10;
+   if(digits >= 2)return point*10;
    else return point;
 }
 
